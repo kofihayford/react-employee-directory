@@ -13,7 +13,10 @@ export default function EmployeeLoading() {
         })
         setUsers([...ageSort])
     }
-
+    let genderFilter = () => {
+        let female = users.filter(user => user.gender.toLowerCase() === 'female')
+        setUsers([...female])
+    }
     let URL = "https://randomuser.me/api/?results=10&?nat=us"
     useEffect(() => {
         async function fetchData() {
@@ -28,7 +31,7 @@ export default function EmployeeLoading() {
     return (
         <div>
             <div><button className="button" onClick={() => sortByAge()}> Sort by Age </button>
-                <button className="button"> Filter by Gender </button> </div>
+                <button className="button" onClick={() => genderFilter()}> Filter by Gender </button> </div>
             {users && users.map((index, key) => {
                 return (
                     <div className="cardDisplay" key={key}>
