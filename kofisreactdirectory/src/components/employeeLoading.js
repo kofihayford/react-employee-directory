@@ -7,30 +7,31 @@ import Employees from "./employees"
 
 export default function EmployeeLoading() {
     const [users, setUsers] = useState([])
-    let URL = "https://randomuser.me/api/?results=10&?nat=us"
-    useEffect(() => {
-        fetch(URL)
-            .then(res => {
-                return res.json()
-            })
-            .then(results => setUsers(results.results))
-            .catch(e => console.log(e))
-    }, [])
-    console.log(users, 'this is our state users')
     let sortByAge = () => {
         let ageSort = users.sort((a, b) => {
             return a.dob.age - b.dob.age
         })
-        setUsers(ageSort)
+        setUsers([...ageSort])
     }
+    async function fetchData() {
+        const res = await fetch(URL);
+        const json = await res.json();
+        setUsers(json.results)
+    }
+    let URL = "https://randomuser.me/api/?results=10&?nat=us"
+    useEffect(() => {
+
+        fetchData();
+    }, [setUsers])
+    console.log(users, 'this is our state users')
 
     return (
         <div>
-            <button className="button" onClick={() => sortByAge()}> Sort by Age </button>
-            <button className="button"> Filter by Gender </button>
+            <div><button className="button" onClick={() => sortByAge()}> Sort by Age </button>
+                <button className="button"> Filter by Gender </button> </div>
             {users && users.map((index, key) => {
                 return (
-                    <div key={key}>
+                    <div className="cardDisplay" key={key}>
                         <Employees
                             last={index.name.last}
                             first={index.name.first}

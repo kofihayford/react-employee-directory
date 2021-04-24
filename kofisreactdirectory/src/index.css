@@ -13,18 +13,32 @@ code {
 }
 
 .employeeCard {
-  background-color: aqua;
+  background-image: linear-gradient(to right, rgba(235, 227, 227, 0.329), rgb(214, 146, 146));
   border-radius:3em;
-  border-style: double;
+  border-style: solid;
   width: 400px;
   padding: 20px;
   margin: 30px;
-  display: flexbox;
+  box-shadow: 10px 10px 5px grey;
+  margin: auto;
+  margin-bottom: 30px;
 }
 
 .button{
-  position:relative;
-  left: 50px;
-  margin: 25px
-  
+  display: block;
+  width: 250px;
+  margin-top: 30px;
+  padding-top: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  line-height: 75px;
+  margin-bottom: 30px;
+}
+.image {
+  border-radius: 2em;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
