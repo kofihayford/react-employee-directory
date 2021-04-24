@@ -13,14 +13,14 @@ export default function EmployeeLoading() {
         })
         setUsers([...ageSort])
     }
-    async function fetchData() {
-        const res = await fetch(URL);
-        const json = await res.json();
-        setUsers(json.results)
-    }
+
     let URL = "https://randomuser.me/api/?results=10&?nat=us"
     useEffect(() => {
-
+        async function fetchData() {
+            const res = await fetch(URL);
+            const json = await res.json();
+            setUsers(json.results)
+        }
         fetchData();
     }, [setUsers])
     console.log(users, 'this is our state users')
