@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-
+import Employees from "./employees"
 
 // Will be pulling in name, email, age, phone, ID, date of birth, picture
 
@@ -7,7 +7,7 @@ import React, { useState, useEffect } from 'react'
 
 export default function EmployeeLoading() {
     const [users, setUsers] = useState([])
-    let URL = "https://randomuser.me/api/?results=10"
+    let URL = "https://randomuser.me/api/?results=10&?nat=us"
     useEffect(() => {
         fetch(URL)
             .then(res => {
@@ -17,30 +17,34 @@ export default function EmployeeLoading() {
             .catch(e => console.log(e))
     }, [])
     console.log(users, 'this is our state users')
+    let sortByAge = () => {
+        let ageSort = users.sort((a, b) => {
+            return a.dob.age - b.dob.age
+        })
+        setUsers(ageSort)
+    }
+
     return (
         <div>
-            <p className="name"> Name:
-            </p>
-
-            <p className="email"> Email:
-            </p>
-
-            <p className="phone"> Phone:
-            </p>
-
-            <p className="age"> Age:
-            </p>
-
-            <p className="id"> ID Number:
-            </p>
-
-            <p className="dob"> Date of Birth:
-            </p>
-
-            <p className="name"> Gender:
-            </p>
-
-            <img src="" className="image" alt="avatarimg" />
+            <button className="button" onClick={() => sortByAge()}> Sort by Age </button>
+            <button className="button"> Filter by Gender </button>
+            {users && users.map((index, key) => {
+                return (
+                    <div key={key}>
+                        <Employees
+                            last={index.name.last}
+                            first={index.name.first}
+                            email={index.email}
+                            phone={index.phone}
+                            dob={index.dob.date}
+                            age={index.dob.age}
+                            gender={index.gender}
+                            id={index.id.value}
+                            img={index.picture.large}
+                        />
+                    </div>
+                )
+            })}
         </div>
     )
 }

@@ -11,3 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.employeeCard {
+  background-color: aqua;
+  border-radius:3em;
+  border-style: double;
+  width: 400px;
+  padding: 20px;
+  margin: 30px;
+  display: flexbox;
+}
+
+.button{
+  position:relative;
+  left: 50px;
+  margin: 25px
+  
+}
